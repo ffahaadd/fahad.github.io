@@ -260,6 +260,7 @@
     overflow: hidden;
     margin-bottom: 40px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    contain: layout;
   }
 
   .project-card:hover {
@@ -507,6 +508,7 @@
   <div class="hero" style="position:relative;">
     <div>
       <div class="hero-badge">AVAILABLE FOR OPPORTUNITIES</div>
+      <p style="font-family: 'DM Mono', monospace; font-size: 12px; color: var(--dim); letter-spacing: 3px; margin-bottom: 12px;">FAHAD ZAMEER</p>
       <h1>
         AI <span class="line-blue">Projects</span><br>
         <span class="line-violet">Portfolio</span>
@@ -598,12 +600,12 @@
       <div class="project-header">
         <div>
           <div class="project-number">PROJECT 02</div>
-          <div class="project-title">Mitchell Starc Wicket Performance Predictor</div>
+          <div class="project-title">Altair AI Powered Wickets Prediction Model</div>
           <p class="project-desc">A supervised machine learning model built in Altair AI Studio that predicts Mitchell Starc's ODI wicket performance (Low / Medium / High) using 132 match records, Decision Tree algorithm, Economy Rate and Overs as features — achieving 60% accuracy.</p>
         </div>
         <div class="project-links">
           <a href="altair/Altair%20report.pdf" target="_blank" class="tag-link tag-link-pink">📄 Full Report</a>
-          <a href="altair/Screenshot%202026-05-23%20074320.png" target="_blank" class="tag-link tag-link-teal">🖼️ Screenshots</a>
+          <a href="#gallery" onclick="document.getElementById('gallery').scrollIntoView({behavior:'smooth'}); return false;" class="tag-link tag-link-teal">🖼️ View Screenshots</a>
         </div>
       </div>
       <div class="project-body">
@@ -641,26 +643,26 @@
         </div>
 
         <!-- SCREENSHOTS GALLERY -->
-        <div style="margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border);">
+        <div id="gallery" style="margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border); overflow: hidden; max-width: 100%;">
           <div style="font-family: 'DM Mono', monospace; font-size: 11px; color: var(--dim); letter-spacing: 2px; margin-bottom: 16px;">PROJECT SCREENSHOTS</div>
-          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;">
-            <a href="altair/Screenshot%202026-05-23%20074320.png" target="_blank">
-              <img src="altair/Screenshot%202026-05-23%20074320.png" style="width:100%; border-radius: 10px; border: 1px solid var(--border); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" alt="Altair Workflow"/>
+          <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 100%;">
+            <a href="altair/Screenshot%202026-05-23%20074320.png" target="_blank" style="display:block; overflow:hidden; border-radius:10px;">
+              <img src="altair/Screenshot%202026-05-23%20074320.png" style="width:100%; height:160px; object-fit:cover; border-radius:10px; border:1px solid var(--border); transition:transform 0.2s; display:block;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" alt="Altair Workflow"/>
             </a>
-            <a href="altair/Screenshot%202026-05-31%20171429.png" target="_blank">
-              <img src="altair/Screenshot%202026-05-31%20171429.png" style="width:100%; border-radius: 10px; border: 1px solid var(--border); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" alt="Screenshot 2"/>
+            <a href="altair/Screenshot%202026-05-31%20171429.png" target="_blank" style="display:block; overflow:hidden; border-radius:10px;">
+              <img src="altair/Screenshot%202026-05-31%20171429.png" style="width:100%; height:160px; object-fit:cover; border-radius:10px; border:1px solid var(--border); transition:transform 0.2s; display:block;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" alt="Apply Model"/>
             </a>
-            <a href="altair/Screenshot%202026-05-31%20171502.png" target="_blank">
-              <img src="altair/Screenshot%202026-05-31%20171502.png" style="width:100%; border-radius: 10px; border: 1px solid var(--border); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" alt="Decision Tree"/>
+            <a href="altair/Screenshot%202026-05-31%20171502.png" target="_blank" style="display:block; overflow:hidden; border-radius:10px;">
+              <img src="altair/Screenshot%202026-05-31%20171502.png" style="width:100%; height:160px; object-fit:cover; border-radius:10px; border:1px solid var(--border); transition:transform 0.2s; display:block;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" alt="Decision Tree"/>
             </a>
-            <a href="altair/Screenshot%202026-05-31%20171523.png" target="_blank">
-              <img src="altair/Screenshot%202026-05-31%20171523.png" style="width:100%; border-radius: 10px; border: 1px solid var(--border); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" alt="Performance Vector"/>
+            <a href="altair/Screenshot%202026-05-31%20171523.png" target="_blank" style="display:block; overflow:hidden; border-radius:10px;">
+              <img src="altair/Screenshot%202026-05-31%20171523.png" style="width:100%; height:160px; object-fit:cover; border-radius:10px; border:1px solid var(--border); transition:transform 0.2s; display:block;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" alt="Performance Vector"/>
             </a>
-            <a href="altair/Screenshot%202026-05-31%20171538.png" target="_blank">
-              <img src="altair/Screenshot%202026-05-31%20171538.png" style="width:100%; border-radius: 10px; border: 1px solid var(--border); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" alt="Confusion Matrix"/>
+            <a href="altair/Screenshot%202026-05-31%20171538.png" target="_blank" style="display:block; overflow:hidden; border-radius:10px;">
+              <img src="altair/Screenshot%202026-05-31%20171538.png" style="width:100%; height:160px; object-fit:cover; border-radius:10px; border:1px solid var(--border); transition:transform 0.2s; display:block;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" alt="Confusion Matrix"/>
             </a>
-            <a href="altair/Screenshot%202026-05-31%20171550.png" target="_blank">
-              <img src="altair/Screenshot%202026-05-31%20171550.png" style="width:100%; border-radius: 10px; border: 1px solid var(--border); transition: transform 0.2s;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" alt="Apply Model"/>
+            <a href="altair/Screenshot%202026-05-31%20171550.png" target="_blank" style="display:block; overflow:hidden; border-radius:10px;">
+              <img src="altair/Screenshot%202026-05-31%20171550.png" style="width:100%; height:160px; object-fit:cover; border-radius:10px; border:1px solid var(--border); transition:transform 0.2s; display:block;" onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'" alt="Apply Model"/>
             </a>
           </div>
         </div>
@@ -686,7 +688,7 @@
     <div class="about-grid fade-up">
       <div>
         <div class="section-label">02 / ABOUT</div>
-        <h2 class="section-title">About Me</h2>
+        <h2 class="section-title">Fahad Zameer</h2>
         <p style="color: var(--dim); font-size: 15px; line-height: 1.8; margin-bottom: 20px;">
           Final year Computer Science student specializing in AI, networking, and modern web technologies. Passionate about building tools that solve real problems.
         </p>
@@ -725,7 +727,7 @@
 <!-- FOOTER -->
 <footer>
   <div class="wrapper">
-    <span>fahad</span>.github.io &nbsp;·&nbsp; Built with HTML, CSS & JS &nbsp;·&nbsp; 2026
+    <span>Fahad Zameer</span> &nbsp;·&nbsp; fahad.github.io &nbsp;·&nbsp; Built with HTML, CSS & JS &nbsp;·&nbsp; 2026
   </div>
 </footer>
 
