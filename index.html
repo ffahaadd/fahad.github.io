@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fahad | AI Projects Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:wght@400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:      #05050f;
+    --bg2:     #0a0a1a;
+    --card:    #0d0d22;
+    --border:  #1a1a35;
+    --white:   #f0f0ff;
+    --dim:     #7070a0;
+    --blue:    #4f8ef7;
+    --violet:  #9b59f5;
+    --teal:    #00d4aa;
+    --pink:    #f72585;
+    --gold:    #ffb703;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* GRID BACKGROUND */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(79,142,247,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(79,142,247,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ORBS */
+  .orb {
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .orb-1 { width: 500px; height: 500px; background: rgba(79,142,247,0.08); top: -200px; right: -150px; }
+  .orb-2 { width: 400px; height: 400px; background: rgba(155,89,245,0.07); bottom: 10%; left: -150px; }
+  .orb-3 { width: 300px; height: 300px; background: rgba(0,212,170,0.06); top: 50%; right: 10%; }
+
+  /* NAV */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 60px;
+    background: rgba(5,5,15,0.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 20px;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-logo span { color: var(--blue); }
+
+  .nav-links { display: flex; gap: 32px; }
+  .nav-links a {
+    color: var(--dim);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+    font-family: 'DM Mono', monospace;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  /* WRAPPER */
+  .wrapper {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding-top: 80px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(79,142,247,0.08);
+    border: 1px solid rgba(79,142,247,0.25);
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--blue);
+    letter-spacing: 2px;
+    margin-bottom: 28px;
+    animation: fadeUp 0.6s ease both;
+  }
+
+  .hero-badge::before {
+    content: '';
+    width: 6px; height: 6px;
+    background: var(--blue);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(0.8); }
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(52px, 7vw, 90px);
+    font-weight: 800;
+    line-height: 1.0;
+    margin-bottom: 24px;
+    animation: fadeUp 0.6s 0.1s ease both;
+  }
+
+  .hero h1 .line-blue   { color: var(--blue); }
+  .hero h1 .line-violet { color: var(--violet); }
+
+  .hero-sub {
+    font-size: 17px;
+    color: var(--dim);
+    max-width: 500px;
+    line-height: 1.7;
+    margin-bottom: 40px;
+    animation: fadeUp 0.6s 0.2s ease both;
+  }
+
+  .hero-cta {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    animation: fadeUp 0.6s 0.3s ease both;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 28px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-primary {
+    background: var(--blue);
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(79,142,247,0.35);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(79,142,247,0.5); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--dim);
+    border: 1px solid var(--border);
+  }
+  .btn-outline:hover { border-color: var(--blue); color: var(--blue); }
+
+  /* SCROLL INDICATOR */
+  .scroll-hint {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    color: var(--dim);
+    font-size: 11px;
+    font-family: 'DM Mono', monospace;
+    letter-spacing: 2px;
+    animation: fadeUp 1s 0.8s ease both;
+  }
+
+  .scroll-line {
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(to bottom, var(--blue), transparent);
+    animation: scrollAnim 2s infinite;
+  }
+
+  @keyframes scrollAnim {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* ── SECTION ── */
+  section { padding: 100px 0; }
+
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--blue);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 4vw, 48px);
+    font-weight: 800;
+    margin-bottom: 16px;
+  }
+
+  .section-sub {
+    color: var(--dim);
+    font-size: 16px;
+    max-width: 550px;
+    line-height: 1.7;
+    margin-bottom: 60px;
+  }
+
+  /* ── PROJECT CARDS ── */
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 40px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  }
+
+  .project-header {
+    padding: 36px 40px 28px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+  }
+
+  .project-number {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--dim);
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+
+  .project-title {
+    font-family: 'Syne', sans-serif;
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 10px;
+  }
+
+  .project-desc {
+    color: var(--dim);
+    font-size: 15px;
+    line-height: 1.7;
+    max-width: 580px;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+    flex-wrap: wrap;
+  }
+
+  .tag-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .tag-link-blue   { background: rgba(79,142,247,0.12);  color: var(--blue);   border: 1px solid rgba(79,142,247,0.25); }
+  .tag-link-violet { background: rgba(155,89,245,0.12); color: var(--violet); border: 1px solid rgba(155,89,245,0.25); }
+  .tag-link-teal   { background: rgba(0,212,170,0.12);  color: var(--teal);   border: 1px solid rgba(0,212,170,0.25); }
+  .tag-link-pink   { background: rgba(247,37,133,0.12); color: var(--pink);   border: 1px solid rgba(247,37,133,0.25); }
+
+  .tag-link:hover { transform: translateY(-1px); filter: brightness(1.2); }
+
+  .project-body { padding: 36px 40px; }
+
+  /* FEATURES GRID */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .feature-item {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 20px;
+    transition: border-color 0.2s;
+  }
+
+  .feature-item:hover { border-color: var(--blue); }
+
+  .feature-icon {
+    font-size: 22px;
+    margin-bottom: 10px;
+  }
+
+  .feature-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 5px;
+  }
+
+  .feature-desc {
+    font-size: 12px;
+    color: var(--dim);
+    line-height: 1.5;
+  }
+
+  /* TECH BADGES */
+  .tech-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    align-items: center;
+  }
+
+  .tech-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    color: var(--dim);
+    letter-spacing: 2px;
+    margin-right: 4px;
+  }
+
+  .tech-badge {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 5px 12px;
+    font-family: 'DM Mono', monospace;
+    font-size: 12px;
+    color: var(--dim);
+    transition: all 0.2s;
+  }
+
+  .tech-badge:hover { border-color: var(--blue); color: var(--blue); }
+
+  /* DIVIDER */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0;
+  }
+
+  /* ABOUT */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+  }
+
+  .about-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 36px;
+  }
+
+  .stat-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 28px;
+  }
+
+  .stat-item {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-size: 32px;
+    font-weight: 800;
+    color: var(--blue);
+  }
+
+  .stat-label {
+    font-size: 12px;
+    color: var(--dim);
+    margin-top: 4px;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 40px 0;
+    text-align: center;
+    color: var(--dim);
+    font-size: 13px;
+    font-family: 'DM Mono', monospace;
+  }
+
+  footer span { color: var(--blue); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .fade-up {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    .wrapper { padding: 0 20px; }
+    .hero h1 { font-size: 44px; }
+    .project-header { flex-direction: column; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .about-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="orb orb-1"></div>
+<div class="orb orb-2"></div>
+<div class="orb orb-3"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">fahad<span>.dev</span></a>
+  <div class="nav-links">
+    <a href="#projects">Projects</a>
+    <a href="#about">About</a>
+    <a href="https://github.com/ffahaadd" target="_blank">GitHub</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="wrapper">
+  <div class="hero" style="position:relative;">
+    <div>
+      <div class="hero-badge">AVAILABLE FOR OPPORTUNITIES</div>
+      <h1>
+        AI <span class="line-blue">Projects</span><br>
+        <span class="line-violet">Portfolio</span>
+      </h1>
+      <p class="hero-sub">
+        Final year CS student building intelligent tools with Python, Streamlit, and modern AI frameworks. Two live projects, zero cost.
+      </p>
+      <div class="hero-cta">
+        <a href="#projects" class="btn btn-primary">View Projects →</a>
+        <a href="https://github.com/ffahaadd" target="_blank" class="btn btn-outline">GitHub Profile</a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <div class="scroll-line"></div>
+      SCROLL
+    </div>
+  </div>
+</div>
+
+<!-- PROJECTS -->
+<div class="wrapper">
+  <section id="projects">
+    <div class="fade-up">
+      <div class="section-label">01 / WORK</div>
+      <h2 class="section-title">Projects</h2>
+      <p class="section-sub">Two AI-powered web applications built from scratch and deployed live — free and accessible 24/7.</p>
+    </div>
+
+    <!-- PROJECT 1 -->
+    <div class="project-card fade-up">
+      <div class="project-header">
+        <div>
+          <div class="project-number">PROJECT 01</div>
+          <div class="project-title">Procrastination Pattern Detector</div>
+          <p class="project-desc">A smart productivity tracker that analyzes your daily activities and gives a real-time score out of 100%. Log your day, get insights, and see if you're busy or just farig.</p>
+        </div>
+        <div class="project-links">
+          <a href="YOUR_STREAMLIT_LINK" target="_blank" class="tag-link tag-link-blue">🌐 Live App</a>
+          <a href="https://github.com/ffahaadd/procrastination-detector" target="_blank" class="tag-link tag-link-violet">💻 Code</a>
+          <a href="YOUR_SLIDES_LINK" target="_blank" class="tag-link tag-link-teal">📊 Slides</a>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon">👤</div>
+            <div class="feature-name">Personalized</div>
+            <div class="feature-desc">Greets & addresses you by name throughout the session</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">📊</div>
+            <div class="feature-name">Visual Analytics</div>
+            <div class="feature-desc">Interactive pie chart + productivity score out of 100%</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🕌</div>
+            <div class="feature-name">Islamic Aware</div>
+            <div class="feature-desc">Namaz, Quran & Ibadat counted as productive time</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">⏰</div>
+            <div class="feature-name">Time Tracking</div>
+            <div class="feature-desc">Log full day with start & end times for every activity</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">😴</div>
+            <div class="feature-name">Smart Sleep</div>
+            <div class="feature-desc">Proper sleep = productive, oversleeping = flagged</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🌐</div>
+            <div class="feature-name">Live 24/7</div>
+            <div class="feature-desc">Deployed on Streamlit Cloud — 100% free forever</div>
+          </div>
+        </div>
+        <div class="tech-row">
+          <span class="tech-label">STACK</span>
+          <span class="tech-badge">Python</span>
+          <span class="tech-badge">Streamlit</span>
+          <span class="tech-badge">Plotly</span>
+          <span class="tech-badge">Pandas</span>
+          <span class="tech-badge">Streamlit Cloud</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="project-card fade-up">
+      <div class="project-header">
+        <div>
+          <div class="project-number">PROJECT 02</div>
+          <div class="project-title">Altair AI Studio Project</div>
+          <p class="project-desc">An AI-powered project built using Altair AI Studio — leveraging no-code/low-code machine learning workflows to build, train and deploy intelligent models.</p>
+        </div>
+        <div class="project-links">
+          <a href="YOUR_PROJECT2_LINK" target="_blank" class="tag-link tag-link-pink">🔗 View Project</a>
+          <a href="YOUR_PROJECT2_DOCS" target="_blank" class="tag-link tag-link-teal">📄 Docs</a>
+        </div>
+      </div>
+      <div class="project-body">
+        <div class="features-grid">
+          <div class="feature-item">
+            <div class="feature-icon">🤖</div>
+            <div class="feature-name">AI Studio</div>
+            <div class="feature-desc">Built using Altair AI Studio's visual ML workflow builder</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">📈</div>
+            <div class="feature-name">ML Models</div>
+            <div class="feature-desc">Trained and evaluated machine learning models on real data</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">📊</div>
+            <div class="feature-name">Data Analysis</div>
+            <div class="feature-desc">Full data preprocessing, feature engineering & visualization</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">⚡</div>
+            <div class="feature-name">No-Code ML</div>
+            <div class="feature-desc">Rapid model development with drag-and-drop workflows</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">🎯</div>
+            <div class="feature-name">Predictions</div>
+            <div class="feature-desc">Real-time predictions and model performance evaluation</div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon">📋</div>
+            <div class="feature-name">Documentation</div>
+            <div class="feature-desc">Full project documentation with results and analysis</div>
+          </div>
+        </div>
+        <div class="tech-row">
+          <span class="tech-label">STACK</span>
+          <span class="tech-badge">Altair AI Studio</span>
+          <span class="tech-badge">Machine Learning</span>
+          <span class="tech-badge">Data Analysis</span>
+          <span class="tech-badge">Python</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="divider"></div>
+
+<!-- ABOUT -->
+<div class="wrapper">
+  <section id="about">
+    <div class="about-grid fade-up">
+      <div>
+        <div class="section-label">02 / ABOUT</div>
+        <h2 class="section-title">About Me</h2>
+        <p style="color: var(--dim); font-size: 15px; line-height: 1.8; margin-bottom: 20px;">
+          Final year Computer Science student specializing in AI, networking, and modern web technologies. Passionate about building tools that solve real problems.
+        </p>
+        <p style="color: var(--dim); font-size: 15px; line-height: 1.8;">
+          Currently preparing for roles in DevOps, Cybersecurity, and Cloud Engineering while building AI-powered projects along the way.
+        </p>
+        <div style="margin-top: 30px;">
+          <a href="https://github.com/ffahaadd" target="_blank" class="btn btn-primary">GitHub Profile →</a>
+        </div>
+      </div>
+      <div class="about-card">
+        <div style="font-family: 'DM Mono', monospace; font-size: 11px; color: var(--dim); letter-spacing: 2px; margin-bottom: 8px;">QUICK STATS</div>
+        <div class="stat-grid">
+          <div class="stat-item">
+            <div class="stat-num">2</div>
+            <div class="stat-label">Live Projects</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num" style="color: var(--teal);">100%</div>
+            <div class="stat-label">Free to Use</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num" style="color: var(--violet);">4+</div>
+            <div class="stat-label">Tech Stack</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-num" style="color: var(--pink);">24/7</div>
+            <div class="stat-label">Always Live</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrapper">
+    <span>fahad</span>.github.io &nbsp;·&nbsp; Built with HTML, CSS & JS &nbsp;·&nbsp; 2026
+  </div>
+</footer>
+
+<script>
+  // Scroll fade-up animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
